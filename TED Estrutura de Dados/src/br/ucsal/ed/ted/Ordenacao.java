@@ -1,5 +1,6 @@
 package br.ucsal.ed.ted;
 
+// Métodos de Ordenação
 public class Ordenacao {
 
 	public void bubbleSort(int[] vetor) {
@@ -107,7 +108,7 @@ public class Ordenacao {
 		a[i] = tmp;
 	}
 
-	public static final void swapReferences(Object[] a, int index1, int index2) {
+	private void swapReferences(Object[] a, int index1, int index2) {
 		Object tmp = a[index1];
 		a[index1] = a[index2];
 		a[index2] = tmp;
