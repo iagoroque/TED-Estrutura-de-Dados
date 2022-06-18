@@ -19,19 +19,19 @@ public class Ordenacao {
 		}
 	}
 
-	public void selectionSort(int[] array) {
-		for (int fixo = 0; fixo < array.length - 1; fixo++) {
+	public void selectionSort(int[] vetor) {
+		for (int fixo = 0; fixo < vetor.length - 1; fixo++) {
 			int menor = fixo;
 
-			for (int i = menor + 1; i < array.length; i++) {
-				if (array[i] < array[menor]) {
+			for (int i = menor + 1; i < vetor.length; i++) {
+				if (vetor[i] < vetor[menor]) {
 					menor = i;
 				}
 			}
 			if (menor != fixo) {
-				int t = array[fixo];
-				array[fixo] = array[menor];
-				array[menor] = t;
+				int t = vetor[fixo];
+				vetor[fixo] = vetor[menor];
+				vetor[menor] = t;
 			}
 		}
 	}
@@ -156,6 +156,31 @@ public class Ordenacao {
 
 		for (pos = 0, i = inicio; i < fim; i++, pos++) {
 			vetor[i] = novoVetor[pos];
+		}
+	}
+
+	public void aTenthSort(int[] vetor) {
+		int j;
+		int key;
+		int i;
+		int x = (90 * vetor.length)/100;
+
+			for (j = 0; j != x; j++) {
+				key = vetor[j];
+				for (i = j - 1; (i >= 0) && (vetor[i] > key); i--) {
+					vetor[i + 1] = vetor[i];
+				}
+				vetor[i + 1] = key;
+			}
+			
+	}
+
+	public void reverseSort(int[] vetor) {
+		insertionSort(vetor);
+		for (int i = 0; i < vetor.length / 2; i++) {
+			int x = vetor[i];
+			vetor[i] = vetor[vetor.length - 1 - i];
+			vetor[vetor.length - 1 - i] = x;
 		}
 	}
 }
