@@ -6,16 +6,18 @@ public class Main {
 
 	public static void main(String[] args) {
 		sortBubble();
+		sortInsertion();
 	}
 
-	/**
-	 * Esses métodos geram somente vetores totalmente aleatórios, temos que ver
-	 * também para gerarmos vetores do mesmo tamanho porém os outros vetores terão
-	 * que ser quase ordenados (10% fora de ordem), inversamente ordenados (acho que
-	 * com um 'for' dá para fazer isso), e também um vetor já ordenado, e nesse caso
-	 * eu acho que é só passarmos de novo o mesmo vetor já ordenado alguma vez, para
-	 * ordenar de novo.
+	/*
+	  Esses métodos geram somente vetores totalmente aleatórios, temos que ver
+	  também para gerarmos vetores do mesmo tamanho porém os outros vetores terão
+	  que ser quase ordenados (10% fora de ordem), inversamente ordenados (acho que
+	  com um 'for' dá para fazer isso), e também um vetor já ordenado, e nesse caso
+	  eu acho que é só passarmos de novo o mesmo vetor já ordenado alguma vez, para
+	  ordenar de novo.
 	 */
+     
 	public static int[] vetor100() {
 		int quantidade = 100;
 		int[] vetor = new int[quantidade];
@@ -82,4 +84,33 @@ public class Main {
 		System.out.println("Tempo total de execução = " + (tempoFinal100000 - tempoInicial100) + " ms");
 	}
 
+	// Método que chama o Insertion Sort:
+	public static void sortInsertion() {
+		System.out.println("Execução do Método de Ordenação - Insertion Sort -");
+		int[] vetor100 = vetor100();
+		long tempoInicial100 = System.currentTimeMillis();
+		sort.insertionSort(vetor100);
+		long tempoFinal100 = System.currentTimeMillis();
+		System.out.println("Vetor de tamanho 100, tempo de ordenação = " + (tempoFinal100 - tempoInicial100) + " ms");
+
+		int[] vetor1000 = vetor1000();
+		long tempoInicial1000 = System.currentTimeMillis();
+		sort.insertionSort(vetor1000);
+		long tempoFinal1000 = System.currentTimeMillis();
+		System.out.println("Vetor de tamanho 1000, tempo de ordenação = " + (tempoFinal1000 - tempoInicial1000) + " ms");
+
+		int[] vetor10000 = vetor10000();
+		long tempoInicial10000 = System.currentTimeMillis();
+		sort.insertionSort(vetor10000);
+		long tempoFinal10000 = System.currentTimeMillis();
+		System.out.println("Vetor de tamanho 10000, tempo de ordenação = " + (tempoFinal10000 - tempoInicial10000) + " ms");
+
+		int[] vetor100000 = vetor100000();
+		long tempoInicial100000 = System.currentTimeMillis();
+		sort.insertionSort(vetor100000);
+		long tempoFinal100000 = System.currentTimeMillis();
+		System.out.println("Vetor de tamanho 100000, tempo de ordenação = " + (tempoFinal100000 - tempoInicial100000) + " ms");
+
+		System.out.println("Tempo total de execução = " + (tempoFinal100000 - tempoInicial100) + " ms");
+	}
 }
