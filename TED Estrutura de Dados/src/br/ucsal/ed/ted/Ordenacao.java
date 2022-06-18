@@ -159,28 +159,4 @@ public class Ordenacao {
 		}
 	}
 
-	public void aTenthSort(int[] vetor) {
-		int j;
-		int key;
-		int i;
-		int x = (90 * vetor.length)/100;
-
-			for (j = 0; j != x; j++) {
-				key = vetor[j];
-				for (i = j - 1; (i >= 0) && (vetor[i] > key); i--) {
-					vetor[i + 1] = vetor[i];
-				}
-				vetor[i + 1] = key;
-			}
-			
-	}
-
-	public void reverseSort(int[] vetor) {
-		insertionSort(vetor);
-		for (int i = 0; i < vetor.length / 2; i++) {
-			int x = vetor[i];
-			vetor[i] = vetor[vetor.length - 1 - i];
-			vetor[vetor.length - 1 - i] = x;
-		}
-	}
 }
