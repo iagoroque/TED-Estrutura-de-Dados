@@ -19,19 +19,19 @@ public class Ordenacao {
 		}
 	}
 
-	public void selectionSort(int[] array) {
-		for (int fixo = 0; fixo < array.length - 1; fixo++) {
+	public void selectionSort(int[] vetor) {
+		for (int fixo = 0; fixo < vetor.length - 1; fixo++) {
 			int menor = fixo;
 
-			for (int i = menor + 1; i < array.length; i++) {
-				if (array[i] < array[menor]) {
+			for (int i = menor + 1; i < vetor.length; i++) {
+				if (vetor[i] < vetor[menor]) {
 					menor = i;
 				}
 			}
 			if (menor != fixo) {
-				int t = array[fixo];
-				array[fixo] = array[menor];
-				array[menor] = t;
+				int t = vetor[fixo];
+				vetor[fixo] = vetor[menor];
+				vetor[menor] = t;
 			}
 		}
 	}
@@ -158,4 +158,5 @@ public class Ordenacao {
 			vetor[i] = novoVetor[pos];
 		}
 	}
+
 }
