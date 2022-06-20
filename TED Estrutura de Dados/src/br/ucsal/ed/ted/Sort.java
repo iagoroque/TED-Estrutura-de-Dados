@@ -1,6 +1,6 @@
 package br.ucsal.ed.ted;
 
-public class Ordenacao {
+public class Sort {
 
 	// Atributos que armazenam o número de comparações e movimentações efetuados por cada método
 	private long compBubble = 0, moviBubble = 0;
@@ -70,14 +70,93 @@ public class Ordenacao {
 	public void quickSort(int[] vetor, int inicio, int fim) {
 		compQuick++;
 		if (inicio < fim) {
-			int posicaoPivo = separar(vetor, inicio, fim);
+			int posicaoPivo = apart(vetor, inicio, fim);
 			quickSort(vetor, inicio, posicaoPivo - 1);
 			quickSort(vetor, posicaoPivo + 1, fim);
 		}
 	}
 
-	// Método auxiliar do quickSort()
-	private int separar(int[] vetor, int inicio, int fim) {
+	public void heapSort(Comparable[] a) {
+		compHeap++;
+		for (int i = a.length / 2; i >= 0; i--) {
+			percDown(a, i, a.length);
+		}
+		compHeap++;
+		for (int i = a.length - 1; i > 0; i--) {
+			swapReferences(a, 0, i);
+			percDown(a, 0, i);
+		}
+	}
+
+	public void mergeSort(int[] x, int inicio, int fim) {
+		int meio;
+		compMerge++;
+		if (inicio < fim) {
+			moviMerge++;
+			meio = (inicio + fim) / 2;
+			mergeSort(x, inicio, meio);
+			mergeSort(x, meio + 1, fim);
+			intercale(x, inicio, meio, fim);
+		}
+	}
+
+	// Este método recebe um vetor ordenado e desordena os 10% finais:
+	public int[] aTenth(int[] vetor) {
+		int x = ((vetor.length * 90) / 100);
+		for (int i = x; i < vetor.length; i++) {
+			vetor[i] = (int) (Math.random() * (vetor.length));
+		}
+
+		/*
+		 * Lógica alternativa que ordena apenas 90% do vetor:
+		 * 
+		 * int j;
+		 * int key;
+		 * int i;
+		 * int x = (90 * vetor.length) / 100;
+		 * for (j = 0; j != x; j++) {
+		 * 		key = vetor[j];
+		 * 		for (i = j - 1; (i >= 0) && (vetor[i] > key); i--) {
+		 * 			vetor[i + 1] = vetor[i];
+		 * 		} vetor[i + 1] = key;
+		 * }
+		 */
+
+		return vetor;
+	}
+
+	// Ordenação 10% para Integer - exclusivo para HeapSort:
+	public Integer[] aTenthInteger(Integer[] vetorInteiro) {
+		int x = ((vetorInteiro.length * 90) / 100);
+		for (int i = x; i < vetorInteiro.length; i++) {
+			vetorInteiro[i] = (int) (Math.random() * (vetorInteiro.length));
+		}
+		return vetorInteiro;
+	}
+
+	// Inversor de vetores ordenados:
+	public int[] reverse(int[] vetor) {
+		for (int i = 0; i < vetor.length / 2; i++) {
+			int x = vetor[i];
+			vetor[i] = vetor[vetor.length - 1 - i];
+			vetor[vetor.length - 1 - i] = x;
+		}
+		return vetor;
+	}
+
+	// Inversor de vetores ordenados do tipo Integer - exclusivo para HeapSort:
+	public Integer[] reverseInteger(Integer[] vetorInteiro) {
+		for (int i = 0; i < vetorInteiro.length / 2; i++) {
+			int x = vetorInteiro[i];
+			vetorInteiro[i] = vetorInteiro[vetorInteiro.length - 1 - i];
+			vetorInteiro[vetorInteiro.length - 1 - i] = x;
+		}
+		return vetorInteiro;
+	}
+
+	// Métodos auxiliares - privados -, abaixo:
+	//Auxiliar de quickSort()
+	private int apart(int[] vetor, int inicio, int fim) {
 		int pivo = vetor[inicio];
 		moviQuick++;
 		int i = inicio + 1, f = fim;
@@ -108,25 +187,13 @@ public class Ordenacao {
 		return f;
 	}
 
-	public void heapSort(Comparable[] a) {
-		compHeap++;
-		for (int i = a.length / 2; i >= 0; i--) {
-			percDown(a, i, a.length);
-		}
-		compHeap++;
-		for (int i = a.length - 1; i > 0; i--) {
-			swapReferences(a, 0, i);
-			percDown(a, 0, i);
-		}
-	}
-
-	// Método auxiliar do heapSort()
+	// Auxiliar de heapSort
 	private int leftChild(int i) {
 		moviHeap++;
 		return 2 * i + 1;
 	}
 
-	// Método auxiliar do heapSort()
+	// Auxiliar de heapSort
 	private void percDown(Comparable[] a, int i, int n) {
 		int child;
 		Comparable tmp;
@@ -148,7 +215,7 @@ public class Ordenacao {
 		a[i] = tmp;
 	}
 
-	// Método auxiliar do heapSort()
+	// Auxiliar de heapSort
 	private void swapReferences(Object[] a, int index1, int index2) {
 		moviHeap++;
 		Object tmp = a[index1];
@@ -158,20 +225,8 @@ public class Ordenacao {
 		a[index2] = tmp;
 	}
 
-	public void mergeSort(int[] x, int inicio, int fim) {
-		int meio;
-		compMerge++;
-		if (inicio < fim) {
-			moviMerge++;
-			meio = (inicio + fim) / 2;
-			mergeSort(x, inicio, meio);
-			mergeSort(x, meio + 1, fim);
-			intercala(x, inicio, meio, fim);
-		}
-	}
-
-	// Método auxiliar do mergeSort()
-	private void intercala(int[] vetor, int inicio, int meio, int fim) {
+	// Auxiliar de mergeSort()
+	private void intercale(int[] vetor, int inicio, int meio, int fim) {
 		int novoVetor[] = new int[fim - inicio];
 		int i = inicio;
 		int m = meio;
@@ -220,7 +275,7 @@ public class Ordenacao {
 		}
 	}
 
-	// Métodos getters e setters para obter os valores das comparações e movimentações
+	// Métodos getters e setters para obter os valores das comparações e movimentações:
 	public long getCompBubble() {
 		return compBubble;
 	}
