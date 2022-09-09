@@ -1,0 +1,6 @@
+projectKey=ted-teste
+serverUrl=http://localhost:9000
+serverVersion=9.6.1.59531
+dashboardUrl=http://localhost:9000/dashboard?id=ted-teste
+ceTaskId=AYMjr6bwbdtreyf6zHXL
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AYMjr6bwbdtreyf6zHXL
